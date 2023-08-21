@@ -1,11 +1,11 @@
 #Navigate to terraform resource providers
 
-data "aws_ami" "Centos-8" {
+data "aws_ami" "ubuntu" {
   most_recent = true
 
   filter {
     name   = "name"
-    values = ["973714476881/Centos-8-DevOps-Practice"]
+    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
   }
 
   filter {
@@ -13,17 +13,18 @@ data "aws_ami" "Centos-8" {
     values = ["hvm"]
   }
 
-  owners = ["973714476881"] # Canonical
+  owners = ["099720109477"] # Canonical
 }
 
-resource "aws_instance" "web" {
-  ami           = "ami-03265a0778a880afb"
+resource "aws_instance" "test" {
+  ami           = data.aws_ami.ubuntu.id
   instance_type = "t3.micro"
 
   tags = {
     Name = "HelloWorld"
   }
 }
+
 
 
 
