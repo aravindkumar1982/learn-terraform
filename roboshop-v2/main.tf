@@ -29,6 +29,7 @@ variable "components" {
     dispatch  = { name = "dispatch-dev" }
   }
 }
+
 resource "aws_instance" "instance" {
   for_each = var.components
   ami                    = var.ami
