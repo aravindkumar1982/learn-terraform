@@ -17,7 +17,7 @@ resource "aws_route53_record" "frontend" {
 }
 
 resource "aws_instance" "mongodb" {
-  ami                     = "ami-03265a0778a880afb"
+  ami                     = "3265a0778a880afb"
   instance_type           = "t3.small"
   vpc_security_group_ids  =  [ "sg-0e95806cd6cb8f2af" ]
 
