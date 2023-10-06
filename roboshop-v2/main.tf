@@ -35,14 +35,14 @@ resource "aws_instance" "instance" {
   vpc_security_group_ids = var.security_groups
 
   tags = {
-    Name = lookup(var.components, each.value["name"], null)
+    Name = lookup(var.components, each.key, "null")
   }
 }
 
 resource "aws_route53_record" "record" {
   for_each = var.components
   zone_id = var.zone_id
-  name    = lookup("${component}.devopsak.tech")
+  name    = lookup("frontend.devopsak.tech")
   type    = "A"
   ttl     = 30
   records = [lookup(aws_instance.instance, each.key[""])]
